@@ -43,3 +43,28 @@ Include the following script in your HTML file to initialise the widget:
 </script>
 <script src="https://cdn.jsdelivr.net/gh/prathameshshirole/n8n-chat-widget@latest/n8n-chat-widget.js"></script>
 <!-- Widget Script -->
+
+```
+
+## Replace Placeholder Values
+
+Update the following placeholders in the ChatWidgetConfig object:
+
+1. `<your n8n webhook URL>:` Your n8n webhook endpoint URL.
+2. `<your company logo URL>:` Direct link to your logo (e.g., hosted on AWS S3 or GitHub).
+3. Customise branding and styling options as needed
+
+## How It Works
+- **User Interaction:** When a user interacts with the chat widget, their message is sent to the specified n8n webhook URL.
+- **Webhook Processing:** The n8n workflow processes the incoming message and performs actions such as sending emails, triggering notifications, or integrating with third-party services.
+- **Response Handling:** Responses from the n8n workflow can be configured to display back in the chat widget (requires additional setup).
+
+## Example Use Cases
+1. Customer Support
+Embed the widget on your website to provide real-time customer support. Route messages to your support team via email or messaging platforms.
+
+2. Lead Generation
+Collect leads by capturing user queries and forwarding them to your CRM or marketing automation tools.
+
+3. Feedback Collection
+Use the widget to gather feedback from users and store it in a database for analysis.
