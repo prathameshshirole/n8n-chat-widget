@@ -32,6 +32,13 @@
             --chat-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-family: 'Poppins', sans-serif;
         }
+        .chat-assist-widget .chat-messages img {
+           max-width: 100%;
+            height: auto;
+            border-radius: var(--chat-radius-md);
+            margin: 8px 0;
+            display: block;
+        }
 
         .chat-assist-widget .chat-window {
             position: fixed;
@@ -696,16 +703,21 @@
         return indicator;
     }
 
-    // Function to convert URLs in text to clickable links
     function linkifyText(text) {
-        // URL pattern that matches http, https, ftp links
-        const urlPattern = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
-        
-        // Convert URLs to HTML links
-        return text.replace(urlPattern, function(url) {
-            return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="chat-link">${url}</a>`;
-        });
-    }
+    // Render Markdown images
+    const markdownImagePattern = /!\[([^\]]*)\]\((https?:\/\/[^\)]+)\)/g;
+    text = text.replace(markdownImagePattern, function (_, alt, url) {
+        return `<img src="${url}" alt="${alt}" style="max-width: 100%; height: auto; margin: 8px 0;" />`;
+    });
+
+    // Convert regular URLs to clickable links
+    const urlPattern = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+    text = text.replace(urlPattern, function (url) {
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="chat-link">${url}</a>`;
+    });
+
+    return text;
+}
 
     // Show registration form
     function showRegistrationForm() {
